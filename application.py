@@ -26,15 +26,15 @@ import re
 import pymysql
 
 application = app = Flask(__name__)
-app.secret_key="uruKZqxipteEP5_KiRerSQ"
+app.secret_key="RANDOM"
 
-endpoint = 'jenny-database-final.clf9aoosavui.us-east-1.rds.amazonaws.com'
-username = 'jenny'
-password = 'blackpink'
-database_name = 'cc_a3_database'
+endpoint = 'RANDOM'
+username = 'RANDOM'
+password = 'RANDOM'
+database_name = 'RANDOM'
 
-aws_access_key_id = 'AKIAY7TXOHGETFAEW3U4'
-aws_secret_access_key = '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'
+aws_access_key_id = 'RANDOM'
+aws_secret_access_key = 'RANDOM+RANDOM'
 
 connection = pymysql.connect(host=endpoint, user=username, password=password, database=database_name)
 
@@ -268,7 +268,7 @@ def selection():
 def suggestion():
     user=None
     # URL="https://jdlzgl06s9.execute-api.us-east-1.amazonaws.com/my-function"
-    URL="https://mva5kr1vbd.execute-api.us-east-1.amazonaws.com/RDSQuery"
+    URL="RANDOM"
     headers={"Content-Type": "application/json"}
     params={"qs": "somevalue"}
     payload={"payload": "Shoshy"}
@@ -319,7 +319,7 @@ def admin():
         user=get_login(email)
         if request.method=="POST":
             s3 = boto3.resource('s3', aws_access_key_id = aws_access_key_id, aws_secret_access_key = aws_secret_access_key, region_name = 'us-east-1')
-            s3.Bucket('game-info-cc-a3-jenny').put_object(Key=request.files['file'].filename, Body=request.files['file'])
+            s3.Bucket('RANDOM').put_object(Key=request.files['file'].filename, Body=request.files['file'])
         return render_template("admin.html", user=user)
 
     else:
