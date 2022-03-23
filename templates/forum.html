@@ -1,0 +1,85 @@
+{% extends "public_template.html" %}
+
+{% block title %} Forum {% endblock %}
+
+{% block main %}
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1>Forum</h1>
+            <hr>
+            <a href='/profile'>{{ user['username'] }}</a>
+
+                <br>
+                <form action='/forum' method="POST" enctype="multipart/form-data">
+                    <div class="form-group">
+                    <!-- <label for="exampleDataList" class="form-label">Game</label> -->
+                    <!-- <input class="form-control" list="datalistOptions" name="game" id="game" placeholder="Type to search..."> -->
+                    <label for="game">Choose a game: </label>
+                    <select name="game" id="game">
+                    <!-- <option selected>Please select a game</option> -->
+                    {% for name in games %}
+                    <option  value="{{name}}" >{{name}}</option>
+                    {% endfor %}
+                    </select>
+                    </div>
+                    <br>
+                
+                    <div class="form-group">
+                        <label>Subject</label>
+                        <input class="form-control" type="text" required="required" name="subject" placeholder="Enter a subject">
+                    </div>
+                    <br>
+
+                    <div class="form-group">
+                        <label>Message</label>
+                        <textarea class="form-control" name="message" cols="30" rows="3"
+                            placeholder="Enter your message"></textarea>
+                    </div>
+                   
+                    <br>
+                    <button type="submit" class="btn btn-primary">Post</button>
+
+                </form>
+
+
+            <br>
+            
+            <hr>
+
+            <br>
+            <form action='/selection' method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <select name="selection" id="selection">
+                    {% for name in games%}
+                        <option value="{{name}}">{{name}}</option>
+                    {%endfor%}
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Search</button>
+            </form>
+            {% for post in posts %}
+
+            <div class="card">
+                <div class="card-body">
+                    <img src={{clever_function(post[3])}} alt="" style="width:120px;height:120px;">
+                    <h4> {{ post[1] }} </h4>
+                    <h4>{{post[3]}}</h4>
+                    <hr>
+
+                    <p>{{ post[2] }}</p>
+                    <p class="text-muted">Submitted by {{ post[4] }} on {{post[5]}}</p>
+                    <a href='/view-post/{{post[0]}}'>View</a>
+                </div>
+              </div>
+
+              <br>
+
+            {% endfor %}
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}
